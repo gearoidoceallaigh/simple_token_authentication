@@ -57,7 +57,7 @@ module SimpleTokenAuthentication
       # The finder method should be compatible with all the model adapters,
       # namely ActiveRecord and Mongoid in all their supported versions.
       record = nil
-      record = email && entity.model.where(username: username).first
+      record = username && entity.model.where(username: username).first
     end
 
     # Private: Take benefit from Devise case-insensitive keys
