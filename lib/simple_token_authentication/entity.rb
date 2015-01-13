@@ -30,10 +30,10 @@ module SimpleTokenAuthentication
     # Private: Return the name of the header to watch for the email param
     def identifier_header_name
       if SimpleTokenAuthentication.header_names["#{name_underscore}".to_sym].presence \
-        && identifier_header_name = SimpleTokenAuthentication.header_names["#{name_underscore}".to_sym][:email]
+        && identifier_header_name = SimpleTokenAuthentication.header_names["#{name_underscore}".to_sym][:username]
         identifier_header_name
       else
-        "X-#{name}-Email"
+        "X-#{name}-Username"
       end
     end
 
@@ -42,7 +42,7 @@ module SimpleTokenAuthentication
     end
 
     def identifier_param_name
-      "#{name_underscore}_email".to_sym
+      "#{name_underscore}_username".to_sym
     end
 
     def get_token_from_params_or_headers controller

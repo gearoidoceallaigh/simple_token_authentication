@@ -52,14 +52,12 @@ module SimpleTokenAuthentication
     end
 
     def find_record_from_identifier(entity)
-      email = entity.get_identifier_from_params_or_headers(self).presence
-
-      email = integrate_with_devise_case_insensitive_keys(email)
-
+      username = entity.get_identifier_from_params_or_headers(self).presence
+      username = integrate_with_devise_case_insensitive_keys(username)
       # The finder method should be compatible with all the model adapters,
       # namely ActiveRecord and Mongoid in all their supported versions.
       record = nil
-      record = email && entity.model.where(email: email).first
+      record = email && entity.model.where(username: username).first
     end
 
     # Private: Take benefit from Devise case-insensitive keys
